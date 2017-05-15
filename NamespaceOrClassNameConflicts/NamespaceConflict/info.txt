@@ -1,0 +1,6 @@
+อันนี้คือวิธีแก้เมื่อ namespace 2 ตัว มีความกำกวม
+เช่น
+file a.cs มี namespace คือ Test
+file b.cs มี namespace คือ Program.Test
+
+สมมติ b.cs จะอ้างถึง namespace Test ของ a.cs compile จะงงและ error เพราะ ไม่รู้ว่า เราจะเอา Test ไหน

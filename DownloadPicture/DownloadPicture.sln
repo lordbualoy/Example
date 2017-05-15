@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadPicture", "DownloadPicture.csproj", "{FADD204A-8AB3-4F67-8941-2610CB72C5FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FADD204A-8AB3-4F67-8941-2610CB72C5FB}.Debug|x86.ActiveCfg = Debug|x86
+		{FADD204A-8AB3-4F67-8941-2610CB72C5FB}.Debug|x86.Build.0 = Debug|x86
+		{FADD204A-8AB3-4F67-8941-2610CB72C5FB}.Release|x86.ActiveCfg = Release|x86
+		{FADD204A-8AB3-4F67-8941-2610CB72C5FB}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

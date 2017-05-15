@@ -1,0 +1,10 @@
+<test data="root node">
+	<a data="node lv 1 first item">
+	</a>
+	<b data="node lv 1 second item">
+	</b>
+	<c data="node lv 1 third item">
+		<c_child data="node lv 2 first and only item">
+		</c_child>
+	</c>
+</test>

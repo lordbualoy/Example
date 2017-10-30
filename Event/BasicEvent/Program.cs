@@ -22,7 +22,15 @@ namespace BasicEvent
             MyEvent += Method2;
             MyEvent += Method3;
 
-            MyEvent.Invoke(10);
+            MyEventSignature subscriberExisted = MyEvent;
+            if (subscriberExisted != null)
+            {
+                MyEvent.Invoke(10);
+            }
+            else
+            {
+                Console.WriteLine("Event has no subscribers!");
+            }
         }
 
         static void Method1(int i)

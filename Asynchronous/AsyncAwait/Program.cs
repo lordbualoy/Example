@@ -29,6 +29,21 @@ namespace AsyncAwait
             System.Runtime.CompilerServices.TaskAwaiter<int> taskAwaiter = asyncGetResult.GetAwaiter();
             int asyncResult = taskAwaiter.GetResult();
             Console.WriteLine("Step 14");
+            
+
+            //.Net 4.0-Style Task.Run
+            Task t = Task.Run(
+                () => {
+                    // Just loop.
+                    int ctr = 0;
+                    for (ctr = 0; ctr <= 1000000; ctr++)
+                    { }
+                    Console.WriteLine("Finished {0} loop iterations",
+                                      ctr);
+                }
+                );
+            System.Runtime.CompilerServices.TaskAwaiter taskAwaiter2 = t.GetAwaiter();
+            taskAwaiter2.GetResult();
         }
     }
 

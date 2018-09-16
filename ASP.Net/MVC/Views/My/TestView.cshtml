@@ -1,0 +1,27 @@
+﻿@using MVC.Models
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TestView</title>
+</head>
+<body>
+    <div>
+        @{
+            //MVC.Models.Class1 class1 = (MVC.Models.Class1)
+            Class1 class1 = (Class1)
+                //ViewData["Hello"];
+                ViewBag.HelloBag;
+        }
+
+        <b>Class1 Details </b><br />
+        A : @class1.A <br />
+        B : @class1.B
+    </div>
+</body>
+</html>

@@ -12,14 +12,20 @@ namespace WcfService1
     [ServiceContract]
     public interface IService1
     {
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "GetBySending2Strings/{value1}/{value2}")]
+        string GetBySending2Strings(string value1, string value2);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "GetData")]
-        string GetData(string value);
+            UriTemplate = "PostString")]
+        string PostString(string value);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);

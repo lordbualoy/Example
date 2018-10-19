@@ -8,13 +8,23 @@ namespace CommonSortingAlgorithm
 {
     class Program
     {
-        static int[] baseArray = new int[] { 4, 8, 7, 1, 3, 0, 5, 9, 6, 2 };
+        static int[] baseArray = new int[] {
+            //4, 8, 7, 1, 3, 0, 5, 9, 6, 2,
+            6, 5, 3, 1, 8, 7, 2, 4,
+            //1000,2000,3000,4000,5000,6000,1000,2000,3000,4000,5000,6000,1000,2000,3000,4000,5000,6000,
+            //6,2,3,
+            //6,
+        };
 
         static void Main(string[] args)
         {
             BubbleSort();
             SelectionSort();
             InsertionSort();
+
+            int[] heapSortArray = new int[baseArray.Length];
+            Array.Copy(baseArray, heapSortArray, baseArray.Length);
+            HeapSort.Sort(heapSortArray);
         }
 
         static void Swap(ref int a, ref int b)

@@ -13,19 +13,26 @@ namespace WCFConsoleRest
     [ServiceContract]
     public interface ICalculator
     {
-        [WebGet(UriTemplate = "Add?n1={n1}&n2={n2}")]
+        [WebGet(ResponseFormat = WebMessageFormat.Json
+            , UriTemplate = "Add?n1={n1}&n2={n2}")]
         double Add(double n1, double n2);
 
-        [WebGet(UriTemplate = "Subtract?n1={n1}&n2={n2}")]
+        [WebGet(ResponseFormat = WebMessageFormat.Json
+            , UriTemplate = "Subtract?n1={n1}&n2={n2}")]
         double Subtract(double n1, double n2);
 
-        [WebGet(UriTemplate = "Multiply?n1={n1}&n2={n2}")]
+        [WebGet(ResponseFormat = WebMessageFormat.Json
+            , UriTemplate = "Multiply?n1={n1}&n2={n2}")]
         double Multiply(double n1, double n2);
 
-        [WebGet(UriTemplate = "Divide?n1={n1}&n2={n2}")]
+        [WebGet(ResponseFormat = WebMessageFormat.Json
+            , UriTemplate = "Divide?n1={n1}&n2={n2}")]
         double Divide(double n1, double n2);
 
-        [WebGet]
+        [WebGet(ResponseFormat = WebMessageFormat.Json)]
+        string CountStatic();
+
+        [WebGet(ResponseFormat = WebMessageFormat.Json)]
         string Count();
 
         [WebInvoke(BodyStyle = WebMessageBodyStyle.Bare
@@ -57,7 +64,10 @@ namespace WCFConsoleRest
 
     public class Calculator : ICalculator
     {
-        static int count;
+        static int staticCount;
+        int count;
+
+        public Calculator() { }
 
         public double Add(double n1, double n2) => n1 + n2;
 
@@ -67,7 +77,9 @@ namespace WCFConsoleRest
 
         public double Subtract(double n1, double n2) => n1 - n2;
 
-        public string Count() => $"{++count},{++Static.Count}";
+        public string CountStatic() => $"{++staticCount},{++Static.Count}";
+
+        public string Count() => $"{++count}";
 
         public string Post(string body) => body;
 

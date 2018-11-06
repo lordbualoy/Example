@@ -21,6 +21,8 @@ namespace WCFConsole
         [OperationContract]
         double Divide(double n1, double n2);
         [OperationContract]
+        string CountStatic();
+        [OperationContract]
         string Count();
         [OperationContract]
         Complex Complex(Complex complex);
@@ -32,7 +34,7 @@ namespace WCFConsole
         [DataMember]
         public string Data { get; set; }
     }
-
+    
     public static class Static
     {
         public static int Count { get; set; }
@@ -40,7 +42,10 @@ namespace WCFConsole
 
     public class Calculator : ICalculator
     {
-        static int count;
+        static int staticCount;
+        int count;
+
+        public Calculator() { }
 
         public double Add(double n1, double n2) => n1 + n2;
 
@@ -50,7 +55,9 @@ namespace WCFConsole
 
         public double Subtract(double n1, double n2) => n1 - n2;
 
-        public string Count() => $"{++count},{++Static.Count}";
+        public string CountStatic() => $"{++staticCount},{++Static.Count}";
+
+        public string Count() => $"{++count}";
 
         public Complex Complex(Complex complex) => complex;
 

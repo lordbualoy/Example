@@ -48,6 +48,9 @@ namespace WCFConsoleRest
             , ResponseFormat = WebMessageFormat.Json
             , UriTemplate = "PostComplex")]
         Complex PostComplex(Complex body);
+
+        [WebGet(ResponseFormat = WebMessageFormat.Json)]
+        string Error();
     }
 
     [DataContract]
@@ -56,7 +59,14 @@ namespace WCFConsoleRest
         [DataMember]
         public string Data { get; set; }
     }
-    
+
+    [DataContract]
+    public class Error
+    {
+        [DataMember]
+        public string Message { get; set; }
+    }
+
     public static class Static
     {
         public static int Count { get; set; }
@@ -85,6 +95,8 @@ namespace WCFConsoleRest
 
         public Complex PostComplex(Complex body) => body;
 
+        public string Error() => throw new Exception("Error");
+
         static void Main(string[] args)
         {
             // Step 1 Create a URI to serve as the base address.
@@ -96,14 +108,19 @@ namespace WCFConsoleRest
                 try
                 {
                     // Step 3 Add a service endpoint.
-                    selfHost.AddServiceEndpoint(typeof(ICalculator), new WebHttpBinding(), "AdditionalPath");
+                    var serviceEndpoint = selfHost.AddServiceEndpoint(typeof(ICalculator), new WebHttpBinding(), "AdditionalPath");
                     //for example http://localhost:8000/AdditionalPath/PostComplex
+                    serviceEndpoint.Contract.ContractBehaviors.Add(new ContractBehavior());
+                    serviceEndpoint.EndpointBehaviors.Add(new EndpointBehavior());
+                    foreach (var operation in serviceEndpoint.Contract.Operations)
+                        operation.OperationBehaviors.Add(new OperationBehavior());
 
                     // Step 4 Enable metadata exchange.
                     selfHost.Description.Behaviors.Add(new ServiceMetadataBehavior
                     {
                         HttpGetEnabled = true,
                     });
+                    selfHost.Description.Behaviors.Add(new ServiceBehavior());
 
                     // Step 5 Start the service.
                     selfHost.Open();

@@ -21,9 +21,11 @@ namespace OverridingProperties
 
             AbstractSample1 sample3 = new AbstractSample1 { Data = 5 };
             int get5 = sample3.Data;
+            bool get6 = sample3.VirtualMethod();
 
             AbstractSample2 sample4 = new AbstractSample2 { Data = 5 };
-            int get6 = sample4.Data;
+            int get7 = sample4.Data;
+            bool get8 = sample4.AbstractMethod();
         }
     }
 
@@ -32,27 +34,15 @@ namespace OverridingProperties
         protected int data1;
         public virtual int Data1
         {
-            get
-            {
-                return data1;
-            }
-            set
-            {
-                data1 = value;
-            }
+            get => data1;
+            set => data1 = value;
         }
 
         protected int data2;
         public virtual int Data2
         {
-            get
-            {
-                return data2;
-            }
-            set
-            {
-                data2 = value;
-            }
+            get => data2;
+            set => data2 = value;
         }
     }
 
@@ -60,26 +50,14 @@ namespace OverridingProperties
     {
         public override int Data1
         {
-            get
-            {
-                return base.Data1;
-            }
-            set
-            {
-                base.Data1 = value;
-            }
+            get => base.Data1;
+            set => base.Data1 = value;
         }
 
         public override int Data2
         {
-            get
-            {
-                return data2*2;
-            }
-            set
-            {
-                data2 = value*2;
-            }
+            get => data2 * 2;
+            set => data2 = value * 2;
         }
     }
 
@@ -98,66 +76,58 @@ namespace OverridingProperties
         int data;
         public int Data
         {
-            get
-            {
-                return data * 2;
-            }
-            set
-            {
-                data = value * 2;
-            }
+            get => data * 2;
+            set => data = value * 2;
         }
     }
 
     public abstract class BaseSample1
     {
         protected int data;
-        int Data
+        public virtual int Data
         {
-            get
-            {
-                return data;
-            }
+            get => data;
+            set => data = value;
+        }
+
+        public virtual bool VirtualMethod()
+        {
+            return false;
         }
     }
 
     public class AbstractSample1 : BaseSample1
     {
-        public int Data
+        public override int Data
         {
-            get
-            {
-                return data * 2;
-            }
-            set
-            {
-                data = value * 2;
-            }
+            get => data * 2;
+            set => data = value * 2;
+        }
+
+        public override bool VirtualMethod()
+        {
+            return true;
         }
     }
 
     public abstract class BaseSample2
     {
-        protected int data;
-        public abstract int Data
-        {
-            get;
-            set;
-        }
+        public abstract int Data { get; set; }
+        public abstract bool AbstractMethod();
     }
 
     public class AbstractSample2 : BaseSample2
     {
+        int data;
         public override int Data
         {
-            get
-            {
-                return data * 2;
-            }
-            set
-            {
-                data = value * 2;
-            }
+            get => data * 2;
+            set => data = value * 2;
+        }
+
+        public override bool AbstractMethod()
+        {
+            return true;
         }
     }
 }
